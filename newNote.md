@@ -1,8 +1,7 @@
 # Split() ?
 - Ek string ko kisi particular character/word ke basis par todkar array banana
-- const name = "Viraj Ahir";
+  - const name = "Viraj Ahir";
   - console.log(name.split(" "));
-  - 
 Output :
 - ["Viraj", "Ahir"]
 - ka matlab hai space ke jagah se string ko tod do.
