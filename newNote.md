@@ -15,3 +15,26 @@ Output :
 - console.log(result);
 - 
 - condition ? true wala : false wala
+
+# .sort({ createdAt: -1 }) ?
+- Latest order sabse upar dikhayega.
+
+- -1 = descending order
+-  1 = ascending order
+-  
+
+if (!getData.ok) {
+
+ka simple meaning hai:
+
+"Agar API request successful nahi hui, to ye code chalao."
+
+Interview mein short answer:
+
+response.ok batata hai ki fetch request successful hui hai ya nahi. true means HTTP status 200–299, aur false means error status.
+
+ <h1>{product?.title}</h1>
+
+ ?. isliye lagaya hai kyunki API response aane se pehle product null hai.
+
+Ab ye implement karo. Agar product ka title screen par aa gaya → done bolo.
