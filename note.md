@@ -1,1144 +1,1357 @@
-# What is Javascript
+# JavaScript Revision Notes
 
-  JavaScript ek programming language hai jo websites ko interactive banati hai.
-  HTML structure deta hai, CSS design deta hai, aur JavaScript website ko “zinda” banata hai 😄
+## 1. What is JavaScript?
 
-  # Example:
+### English
 
-  Button click karna
-  Form validate karna
-  Game banana
-  Animation
-  API se data lana
-  Mobile apps aur backend banana
-  
+JavaScript is a **high-level, dynamically typed programming language** mainly used to make web applications interactive. It can run in browsers and also outside browsers using runtimes such as Node.js.
 
-  1. # What is Variable 
-     
-    JavaScript me Variables ka use data store karne ke liye hota hai.
-    Jaise kisi box me cheeze rakhte ho, waise variable me value store hoti hai.
+### Hindi
 
-    # JS me 3 types ke variable keywords hote hain
+JavaScript ek programming language hai jo websites aur web applications ko **interactive aur dynamic** banane ke liye use hoti hai.
 
-    1. let :
+Example:
 
-    Value change ho sakti hai.
+```js
+console.log("Hello JavaScript");
+```
 
-    2. const :
-    
-    Value change nahi kar sakte.
+---
 
-    3. var :
-    
-    Purana method hai. Aajkal mostly let aur const use karte hain.
+# 2. Variables
 
-    let vs const
+### English
 
+Variables are used to store data values in a program.
 
-    Feature	              var            let	      const      
+JavaScript provides three ways to declare variables:
 
-    Value change	        ✅             ✅	         ❌
-    Reassign	            ✅             ✅	         ❌
-    Redeclare             ✅             ❌          ❌
-    Block Scope           ❌             ✅          ✅
+* `var`
+* `let`
+* `const`
 
+### Hindi
 
-  2. # Data Types
+Variable ka use data ko store karne ke liye hota hai.
 
-    Data Type ka matlab hota hai → variable me kis type ka data store hai.
+```js
+let name = "Viraj Ahir";
+const age = 22;
+var city = "Gujarat";
+```
 
-    1. Primitive Data Types
+---
 
-       Ye basic/simple data types hote hain.
+# 3. `var`, `let`, and `const`
 
-       Types:
+| Keyword | Reassign | Redeclare | Scope    |
+| ------- | -------- | --------- | -------- |
+| `var`   | Yes      | Yes       | Function |
+| `let`   | Yes      | No        | Block    |
+| `const` | No       | No        | Block    |
 
-       String
-       Number
-       Boolean
-       Undefined
-       Null
-       BigInt
-       Symbol
+### English
 
+`let` and `const` are generally preferred in modern JavaScript because they provide block scope.
 
-    2. Non-Primitive Data Types
+### Hindi
 
-       Ye complex data store karte hain.
+Modern JavaScript me generally `let` aur `const` use kiye jate hain.
 
-       Mainly:
+---
 
-       Object
-       Array
-       Function
+# 4. Data Types
 
+### English
 
-  # Functions
+JavaScript has primitive and non-primitive/reference data types.
 
-    Function = reusable code block
-    Matlab ek baar code likho aur baar-baar use karo
+### Primitive Types
 
-    Function Kyun Use Karte Hain?
+```text
+String
+Number
+Boolean
+Undefined
+Null
+BigInt
+Symbol
+```
 
-    Agar same kaam multiple baar karna ho to function helpful hota hai.
-    
-    # Parameters :
+### Reference Types
 
-      Parameters function ko data receive karne ke liye use hote hai.
+```text
+Object
+Array
+Function
+```
 
-      <!-- function greet(name) {
-      console.log("Hello " + name);
-      }
+### Example
 
-      greet("Viraj");        -->
+```js
+let name = "Viraj Ahir"; // String
+let age = 22;            // Number
+let isAdmin = false;     // Boolean
+let value;               // Undefined
+let data = null;         // Null
 
-      name → parameter hai
-      "Viraj" → argument hai (actual value)
+let user = {
+  name: "Viraj Ahir"
+};                       // Object
+```
 
-      # Parameters vs Arguments
-      
-        Term	                                                Meaning
+### Hindi
 
-        Parameter	                                  Function banate time variable
-        Argument	                                  Function call karte time actual value
+Data type batata hai ki variable me kis type ka data store hai.
 
+---
 
-      # Simple Return
+# 5. String
 
-      <!-- 
-        function add(a, b) {
-        return a + b;
-      }
+### English
 
-      let result = add(10, 20);
+A String is a sequence of characters used to represent text.
 
-      console.log(result); -->
+```js
+let name = "Viraj Ahir";
+```
 
-      # Without Return
+### Hindi
 
-      <!-- 
-      function add(a, b) {
-      a + b;
-      }
+String ka use text store karne ke liye hota hai.
 
-      console.log(add(2, 3)); 
-      
-      Output :
-      undefined
-      -->
+---
 
+# 6. Number
 
-    # Function Expression :
+### English
 
-      JavaScript me function ko variable ke andar store karna
-      Function Expression kehlata hai.
+The Number type represents numeric values, including integers and floating-point numbers.
 
-      <!-- 
-      const variableName = function() {
-            // code
-      }; -->
+```js
+let age = 22;
+let price = 599.99;
+```
 
+### Hindi
 
-    # Anonymous Function :
+Number ka use numerical values ke liye hota hai.
 
-      Jis function ka naam nahi hota usse anonymous function bolte hai.
+---
 
-      <!-- 
-      hello();
+# 7. Boolean
 
-      const hello = function() {
-          console.log("Hi");
-      }; 
-      
-      Output : 
+### English
 
-      Error
-      -->
-      Anonymous function hoisting me thoda different behave karta hai.
-      Kyuki variable baad me initialize hua.
+Boolean has only two values:
 
-      Kyuki JavaScript ko nahi pata function ka use kaha hoga.
+```js
+true
+false
+```
 
-      Isliye anonymous function mostly:
-      variable me store hota hai
-      callback me use hota hai
+Example:
 
+```js
+let isLoggedIn = true;
+```
 
+### Hindi
 
-    # Arrow Function :
-      
-      Arrow Function ES6 me introduce hua tha.
-      Ye function likhne ka short aur modern way hai.
+Boolean ka use yes/no ya true/false type values ke liye hota hai.
 
-      <!-- 
-      const functionName = () => {
-          // code
-      }; -->
+---
 
-      # Single Parameter :
+# 8. Undefined
 
-        Agar sirf ek parameter ho to () optional hai.
+### English
 
-      <!-- 
-        const square = n => {
-            return n * n;
-        };
+A variable has the value `undefined` when it has been declared but no value has been assigned.
 
-        console.log(square(5)); -->
+```js
+let name;
 
-      # Short Return :
+console.log(name);
+```
 
-        Single line me return likhne ki zarurat nahi.
+Output:
 
-      <!-- 
-        const multiply = (a, b) => a * b;
+```text
+undefined
+```
 
-        console.log(multiply(2, 3));       -->
+### Hindi
 
-      # Important Points
+Jab variable declare ho lekin usme value assign na ho, to uski value `undefined` hoti hai.
 
-        Short syntax
-        ES6 feature
-        Single line me automatic return
-        One parameter me () optional
-        Mostly modern JavaScript me use hota hai
-        this alag behave karta hai
+---
 
+# 9. Null
 
-    # Default Parameters :
+### English
 
-      Agar function call karte time koi value pass nahi karo,
-      to function automatically default value use karega.
+`null` represents an intentional absence of a value.
 
-      <!-- 
-      function greet(name = "Guest") {
-      console.log("Hello " + name);
-      }
+```js
+let user = null;
+```
 
-      greet();
-      greet("Viraj"); -->
+### Hindi
 
-      <!-- 
-      Output  
-      
-      Hello Guest
-      Hello Viraj
-      -->
+`null` ka matlab hai intentionally koi value nahi hai.
 
-      Agar name na mile to "Guest" use hoga
+---
 
-      # Important Points :
-       
-        ES6 feature hai
-        Missing values ke liye useful hai
-        Errors kam hote hai
-        Multiple default parameters use kar sakte ho
-        Arrow function me bhi kaam karta hai
+# 10. Object
 
-    
-    # Function Scope :
+### English
 
-      Variable kaha tak accessible hai.
+An object is a collection of properties stored as key-value pairs.
 
-      Function ke andar banaya gaya variable
-      irf us function ke andar hi use hota hai.
+```js
+const user = {
+  name: "Viraj Ahir",
+  age: 22
+};
+```
 
-      Isko Function Scope bolte hai. 
+### Hindi
 
-      <!-- 
-      function test() {
-      let message = "Hello";
-    
-      console.log(message);
-      }
+Object me data **key-value pair** ke form me store hota hai.
 
-      test();     -->
+---
 
-    # Global Scope :
+# 11. Array
 
-      Global variable har jagah accessible hota hai.
+### English
 
-      <!-- 
-      let city = "Rajkot";
+An array is an ordered collection of values.
 
-      function test() {
-          console.log(city);
-      }
+```js
+const fruits = ["Apple", "Mango", "Banana"];
+```
 
-      test();
-      console.log(city); -->
+### Hindi
 
-      # Important Difference :
-        
-        Keyword	                       Scope
+Array me multiple values ko ek variable me store kar sakte hain.
 
-        var	                           Function Scope
-        let	                           Block Scope
-        const	                         Block Scope
+---
 
-      <!-- 
-        function test() {
+# 12. Function
 
-        if (true) {
-            var a = 10;
-            let b = 20;
-        }
+### English
 
-        console.log(a);
-        console.log(b);
-        }
+A function is a reusable block of code designed to perform a specific task.
 
-        test(); -->
-        
-      <!-- Output 
+```js
+function add(a, b) {
+  return a + b;
+}
 
-        10
-        Error
-      -->
+console.log(add(10, 20));
+```
 
-    # Nested Function Scope :
+### Hindi
 
-      Inner function outer variable access kar sakta hai.
+Function reusable code ka block hota hai jo ek specific task perform karta hai.
 
-      <!--      
+---
 
-      Inner function outer variable access kar sakta hai.
+# 13. Arrow Function
 
-      function outer() {
+### English
 
-          let name = "Viraj";
+An arrow function is a shorter syntax for writing functions.
 
-          function inner() {
-              console.log(name);
-          }
+```js
+const add = (a, b) => {
+  return a + b;
+};
+```
 
-          inner();
-      }
+Short form:
 
-      outer(); -->
+```js
+const add = (a, b) => a + b;
+```
 
-      # Important Points :
+### Hindi
 
-        Function ke andar ka variable bahar access nahi hota
-        Global variable har jagah use ho sakta hai
-        var → function scoped
-        let & const → block scoped
-        Inner function outer variables access kar sakta hai
+Arrow function function likhne ka short aur modern syntax hai.
 
-      
-    # Callback Function :
+---
 
-      Ek function ko dusre function ke andar argument ki tarah pass karna.
-      Aur baad me us function ko call karna.
+# 14. Parameters and Arguments
 
-      # Why Use Callback Functions? 
+### English
 
-        Async tasks
-        Reusable code
-        Event handling
-        Timers
-        API calls
-        Array methods (map, filter, forEach)
+Parameters are variables defined in a function declaration.
 
-      # Async tasks :
-        
-      <!-- 
-        function fetchData(callback) {
-            setTimeout(() => {
-                callback("Data loaded");
-            }, 2000);
-        }
+Arguments are the actual values passed when calling the function.
 
-        fetchData((data) => {
-            console.log(data);
-        }); -->
-      
-      # IIFE (Immediately Invoked Function Expression) :
-        
-        Function banao aur turant execute karo.
+```js
+function greet(name) {
+  console.log(name);
+}
 
-       # Normal Function :
-      <!--          
-         (function () {
-         console.log("Hello");
-         })(); -->
+greet("Viraj");
+```
 
-         ();
+Here:
 
-         Ye us function ko immediately call karta hai.
+* `name` → Parameter
+* `"Viraj"` → Argument
 
-       # Arrow Function :
+### Hindi
 
-      <!-- 
-         const student = ((name) => {
-         console.log("Name :", name)
-         })("Viraj"); -->
+Function banate waqt jo variable dete hain wo **parameter** hota hai.
 
-  # Hoisting :
+Function call karte waqt jo actual value dete hain wo **argument** hoti hai.
 
-    JavaScript execution se pehle
-    declarations ko memory me store karta hai.
+---
 
-    <!-- 
-    console.log(age);
-    var age = 20; -->
+# 15. Return
 
-    # Hoisting in Functions :
+### English
 
-      Function declaration ko code execute hone se pehle memory me store kar diya jata hai.
-      Isliye function ko declaration se pehle bhi call kar sakte ho.
+The `return` statement sends a value back from a function.
 
-      Function declaration fully hoist hota hai.
+```js
+function add(a, b) {
+  return a + b;
+}
+```
 
-      hello();
+### Hindi
 
+`return` function se value bahar bhejne ke liye use hota hai.
 
-    # Function Expression Hoisting :
+---
 
-      Const :  
-      <!-- 
-      hello()
+# 16. Operators
 
-      const hello = function() {
-      console.log("Hello");
-      }; 
-      
-      Output :
-      Error
-      -->
- 
-      var :
-      <!-- 
-      hello();
+### Arithmetic Operators
 
-      var hello = function() {
-          console.log("Hello");
-      }; 
-      
-      Output :
-      TypeError
-      -->
+```text
++   Addition
+-   Subtraction
+*   Multiplication
+/   Division
+%   Remainder
+**  Exponentiation
+```
 
-      Function Expression / Arrow Function :
+### Comparison Operators
 
-      ❌ Before declaration call nahi kar sakte
+```text
+== 
+===
+!=
+!==
+>
+<
+>=
+<=
+```
 
+### Logical Operators
 
-      # Important Points :
+```text
+&&  AND
+||  OR
+!   NOT
+```
 
-      Function declarations fully hoist hote hai
-      Function expressions variable rules follow karte hai
-      Arrow functions bhi variable rules follow karte hai
-      var → undefined
-      let & const → Temporal Dead Zo      
+---
 
+# 17. `==` vs `===`
 
-  # Conditions :
+### English
 
-    Conditions ka use decision lene ke liye hota hai.
+`==` performs loose equality comparison and may perform type conversion.
 
-    Agar condition true ho → ek code chalega
-    Agar false ho → dusra code chalega
-    
-    # == :
+`===` performs strict equality comparison and checks both value and type.
 
-      Sirf value compare karta hai.
+```js
+5 == "5";   // true
+5 === "5";  // false
+```
 
-    # === :
+### Hindi
 
-      Value + type dono compare karta hai.
+`==` value compare karta hai aur type conversion kar sakta hai.
 
-    # Ternary Operator :
+`===` value aur data type dono check karta hai.
 
-      Short form of if else
+**Modern JavaScript me generally `===` prefer kiya jata hai.**
 
-      <!-- 
-      condition ? trueCode : falseCode -->
+---
 
-      <!-- 
-      let age = 18;
+# 18. Conditional Statements
 
-      let result = age >= 18 ? "Adult" : "Minor";
+### English
 
-      console.log(result); -->
+Conditional statements execute different code depending on a condition.
 
-    # Truthy and Falsy Values :
+```js
+if (age >= 18) {
+  console.log("Adult");
+} else {
+  console.log("Minor");
+}
+```
 
-      Falsy values
-      Ye false behave karte hain :
+### Hindi
 
-      false
-      0
-      ""
-      null
-      undefined
-      NaN
+Condition ke basis par different code execute karne ke liye `if`, `else if`, aur `else` use hote hain.
 
- 
-  # DOM (Document Object Model) :
+---
 
-    DOM ki help se JavaScript :
+# 19. Ternary Operator
 
-    HTML ko change kar sakta hai
-    CSS change kar sakta hai
-    Button click handle kar sakta hai
-    Text update kar sakta hai
-    Elements add/remove kar sakta hai
+### English
 
-    1. getElementById()
-       ID se element pakadta hai.
+The ternary operator is a short way to write a simple `if...else`.
 
-    2. getElementsByClassName()
-       Class se elements select karta hai.
+```js
+let result = age >= 18 ? "Adult" : "Minor";
+```
 
-    3. getElementsByTagName()
-       Tag name se select karta hai.
+### Hindi
 
-    4. querySelector()
-       Sabse pehla matching element select karta hai.
+Simple condition ke liye ternary operator `if...else` ka short form hai.
 
-    5. querySelectorAll()
-       Sab matching elements select karta hai.
+---
 
-    # innerText :
-      Sirf visible text change karta hai.
+# 20. Switch
 
-      <!-- 
-      let title = document.getElementById("title");
-      title.innerText = "Welcome"; 
-      -->
+### English
 
-    # innerHTML :
-      HTML bhi insert kar sakta hai.
+`switch` is used when we need to compare one value against multiple possible cases.
 
-      <!-- 
-      title.innerHTML = "<i>Hello</i>"; 
-      -->
+```js
+switch (day) {
+  case "Monday":
+    console.log("Start");
+    break;
 
-    # Style Change Karna :
+  case "Sunday":
+    console.log("Holiday");
+    break;
 
-      <!--       
-      let title = document.getElementById("title");
+  default:
+    console.log("Other day");
+}
+```
 
-      title.style.color = "red";
-      title.style.backgroundColor = "yellow"; 
-      -->
+### Hindi
 
-    # Attribute Change Karna :
+Ek value ko multiple possible cases ke saath compare karne ke liye `switch` use hota hai.
 
-      getAttribute() :
-      <!-- 
-      let link = document.getElementById("link");
+---
 
-      console.log(link.getAttribute("href")); 
-      -->
+# 21. Loops
 
-      setAttribute() :
-      <!-- 
-      link.setAttribute("href", "https://youtube.com"); 
-      -->
+### English
 
-      Create New Element :
-      <!-- 
-      let newElement = document.createElement("h1");
-      newElement.innerText = "New Heading"; 
-      -->
+Loops are used to execute a block of code repeatedly.
 
-      Add Element :
-      <!-- 
-      document.body.appendChild(newElement); 
-      -->
+Common loops:
 
-      Remove Element :
-      <!-- 
-      newElement.remove(); 
-      -->
+* `for`
+* `while`
+* `do...while`
+* `for...of`
+* `for...in`
 
+### Example
 
-   # DOM Traversing :
-     Element ke relatives access karna.
+```js
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
+```
 
-     Property	                               Meaning
+### Hindi
 
-     parentElement	                         parent
-     children	                               child elements
-     firstElementChild	                     first child
-     lastElementChild	                       last child
+Same code ko repeatedly run karne ke liye loops use hote hain.
 
-     <!-- 
-     let parent = document.getElementById("box");
-     console.log(parent.children); 
-     -->
+---
 
-      # classList :
-      Class add/remove karne ke liye.
+# 22. `for...of`
 
-      <!-- 
-      element.classList.add("active"); 
-      -->
+### English
 
-      <!-- 
-      element.classList.remove("active"); 
-      -->
+`for...of` iterates over the values of an iterable such as an array.
 
-      <!-- 
-      element.classList.toggle("dark"); 
-      -->
+```js
+const fruits = ["Apple", "Mango"];
 
+for (const fruit of fruits) {
+  console.log(fruit);
+}
+```
 
-  # JavaScript Loops :
-    Loop ka use repeated kaam ko baar-baar chalane ke liye hota hai.
+### Hindi
 
-    Matlab:
-    Same code multiple times likhne ki zarurat nahi.
+Array ki values ko one-by-one access karne ke liye `for...of` useful hai.
 
-    1. for Loop :
-       Sabse common loop.
+---
 
-       # Syntax : 
+# 23. `for...in`
 
-       <!-- 
-       for(initialization; condition; update) {
+### English
 
-       }
-       Example
-       for(let i = 1; i <= 5; i++) {
-          console.log(i);
-       } 
-       -->
+`for...in` iterates over enumerable property keys of an object.
 
-    2. while Loop :
-       Jab tak condition true hai tab tak loop chalega.
+```js
+const user = {
+  name: "Viraj",
+  age: 22
+};
 
-       # Syntax :
-       
-         <!-- 
-         let i = 1;
+for (const key in user) {
+  console.log(key);
+}
+```
 
-         while(i <= 5) {
-            console.log(i);
+### Hindi
 
-            i++;
-         } 
+Object ki keys ko iterate karne ke liye `for...in` use kiya ja sakta hai.
 
-         i++ nahi diya → loop kabhi band nahi hoga.
-         -->
+---
 
-    3. do while Loop :
-       Pehle code chalega, phir condition check hogi.
+# 24. Array Methods
 
-       <!-- 
-       let i = 1;
+Important array methods:
 
-       do {
-          console.log(i);
-          i++;
-       }
-       while(i <= 5); 
-       -->
+```text
+map()
+filter()
+find()
+findIndex()
+forEach()
+reduce()
+some()
+every()
+includes()
+push()
+pop()
+shift()
+unshift()
+slice()
+splice()
+```
 
-    4. for...of Loop :
-       Arrays aur iterable values ke liye.
+---
 
+# 25. `map()`
 
-       <!-- let fruits = ["Apple", "Banana", "Mango"];
+### English
 
-       for(let fruit of fruits) {
-          console.log(fruit);
-       } 
-          Output:
-          Apple
-          Banana
-          Mango
-       --> 
+`map()` creates a new array by transforming each element of the original array.
 
+```js
+const numbers = [1, 2, 3];
 
-    5. for...in Loop :
-       Objects ke liye.
+const result = numbers.map((num) => num * 2);
 
-        
-       <!-- 
-       let student = {
-          name: "Viraj",
-          age: 18
-       };
+console.log(result);
+```
 
-       for(let key in student) {
-          console.log(key);
-       }
+Output:
 
-          Output:
-          name
-          age 
-       -->
+```text
+[2, 4, 6]
+```
 
-      # Object Values Access :
-        <!-- 
-        for(let key in student) {
-           console.log(student[key]);
-        }\
+### Hindi
 
-        Output:
-        Viraj
-        18 
-        -->
+`map()` har element par operation perform karke **new array** return karta hai.
 
-        # break Statement :
-          Loop ko turant stop karta hai.
+---
 
-          <!-- 
-          for(let i = 1; i <= 10; i++) {
+# 26. `filter()`
 
-              if(i === 5) {
-                  break;
-              }
+### English
 
-            console.log(i);
-          }        
-          -->
+`filter()` creates a new array containing elements that satisfy a condition.
 
-        # continue Statement :
-          Current iteration skip karta hai.
+```js
+const numbers = [1, 2, 3, 4];
 
-          <!-- 
-          for(let i = 1; i <= 5; i++) {
+const result = numbers.filter((num) => num > 2);
 
-             if(i === 3) {
-                continue;
-             }
+console.log(result);
+```
 
-             console.log(i);
-          }
+Output:
 
-              Output:
+```text
+[3, 4]
+```
 
-                1
-                2
-                4
-                5 
-          -->
+### Hindi
 
-        # Nested Loop :
-          Loop ke andar loop.
+`filter()` condition ke according elements select karke new array return karta hai.
 
-          <!-- 
-          for(let i = 1; i <= 3; i++) {
+---
 
-             for(let j = 1; j <= 2; j++) {
+# 27. `find()`
 
-                console.log(i, j);
+### English
 
-             }
+`find()` returns the first element that satisfies the condition.
 
-          } 
-          -->
+```js
+const users = [
+  { id: 1, name: "A" },
+  { id: 2, name: "B" }
+];
 
+const user = users.find((item) => item.id === 2);
+```
 
-  # Arrays :
-    Array ka use multiple values ko ek variable me store karne ke liye hota hai.
+### Hindi
 
-    <!-- 
-    let data = [
-        "Viraj",
-        18,
-        true
-    ]; 
-    -->
-    JavaScript arrays mixed values store kar sakte hain.
+`find()` condition satisfy karne wala **first element** return karta hai.
 
-    Array indexing 0 se start hoti hai.
+---
 
-    # Change Array Value :
-      <!-- 
-      fruits[1] = "Orange";
-      console.log(fruits); 
-      -->
+# 28. `forEach()`
 
-    # Array Length
-      <!-- 
-      let fruits = ["Apple", "Banana", "Mango"];
-      console.log(fruits.length); 
-      -->
+### English
 
-    1. push() :
-       End me value add karta hai.
+`forEach()` executes a function once for each array element.
 
-       <!-- 
-       fruits.push("Mango") 
-       -->
+```js
+const numbers = [1, 2, 3];
 
-    2. pop() :
-       Last value remove karta hai.
+numbers.forEach((num) => {
+  console.log(num);
+});
+```
 
-    3. unshift() :
-       Start me value add karta hai.
+### Hindi
 
-    4. shift() :
-       First value remove karta hai.
+Array ke har element par function execute karne ke liye `forEach()` use hota hai.
 
-    5. includes() :
-       Check karta hai value exist karti hai ya nahi.
+> `forEach()` normally new array return nahi karta.
 
-       <!-- 
-       let fruits = ["Apple", "Banana"];
-       console.log(fruits.includes("Apple")); 
-       -->
+---
 
-    6. indexOf() :
-       Index batata hai.
+# 29. `reduce()`
 
-    7. join() :
-       Array ko string banata hai.
+### English
 
-    8. reverse() :
-       Array reverse karta hai.
+`reduce()` processes array elements and reduces them to a single accumulated result.
 
-       <!-- 
-       fruits.reverse(); 
-       -->
+```js
+const numbers = [10, 20, 30];
 
-    9. sort() :
-       Sort karta hai. / Ek Line me
+const total = numbers.reduce((sum, num) => {
+  return sum + num;
+}, 0);
 
-    10. Array of Objects :
-   
-       <!-- 
-        let students = [
+console.log(total);
+```
 
-           {name: "Viraj", age: 18},
+Output:
 
-           {name: "Rahul", age: 20}
+```text
+60
+```
 
-        ];
+### Hindi
 
-        console.log(students[0].name); -->
+`reduce()` multiple values ko process karke generally ek single result banane ke liye use hota hai.
 
-    11. Nested Arrays :
-   
-       <!-- 
-        let data = [
-            [1,2],
-            [3,4]
-        ];
+---
 
-        console.log(data[0][1]); -->
+# 30. Destructuring
 
-    # Important Array Methods (Modern JS) :
+### English
 
-      1. map() :
-         ek array method hai jo array ke har element par operation perform karta hai aur naya array return karta hai.
-         Original array change nahi hota.
+Destructuring allows us to extract values from arrays or properties from objects into variables.
 
-         <!-- 
-         let nums = [1,2,3];
+### Object
 
-         let result = nums.map(num => num * 2);
+```js
+const user = {
+  name: "Viraj",
+  age: 22
+};
 
-         console.log(result); -->
+const { name, age } = user;
+```
 
-      2. filter() :         
-         Condition ke basis pe filter karta hai.
+### Array
 
-         <!-- 
-         let nums = [1,2,3,4];
+```js
+const colors = ["Red", "Blue"];
 
-         let even = nums.filter(num => num % 2 === 0);
+const [first, second] = colors;
+```
 
-         console.log(even); -->
+### Hindi
 
-      3. find() :          
-         First matching value return karta hai.
+Destructuring se object ki properties ya array ki values ko easily variables me extract kar sakte hain.
 
-         <!-- 
-         let users = [10,20,30];
+---
 
-         let result = users.find(num => num > 15);
+# 31. Spread Operator
 
-         console.log(result); -->
+### English
 
-      4. forEach()         
-         Har element pe action perform karta hai.
+The spread operator `...` expands elements of an iterable or properties of an object.
 
-         <!-- 
-         let nums = [1,2,3];
+```js
+const arr1 = [1, 2];
+const arr2 = [...arr1, 3, 4];
 
-         nums.forEach(num => {
-            console.log(num);
-         }); -->
+console.log(arr2);
+```
 
-      5. Spread Operator with Arrays :
-         
-         Spread Operator ka syntax : (...) 
-         Ye array ke elements ko spread expand (faila) deta hai.
+### Hindi
 
-         let numbers = [1, 2, 3];
+Spread operator `...` existing array/object ke elements ya properties ko expand/copy karne ke liye use hota hai.
 
-         <!-- console.log(...numbers); -->
-         Output
-         1 2 3
+---
 
-         ...numbers
-         Array ko individual values me tod deta hai.
+# 32. Rest Parameter
 
-         Copy Array , Merge Arrays , Add New Elements , Add Elements at Start , Combine Multiple Arrays kar sakta hai 
+### English
 
-         <!-- 
-         let cartItems = ["Shoes", "Watch"];
+The rest parameter `...` collects multiple function arguments into an array.
 
-         let updatedCart = [...cartItems, "T-shirt"];
+```js
+function add(...numbers) {
+  return numbers;
+}
 
-         console.log(updatedCart);-->
+console.log(add(10, 20, 30));
+```
 
-         # Important Points
+### Hindi
 
-           ... spread operator hai
-           Arrays copy kar sakte ho
-           Arrays merge kar sakte ho
-           New elements add kar sakte ho
-           Function arguments me use hota hai
-           ES6 feature hai
+Rest parameter multiple arguments ko ek array me collect karta hai.
 
-      6. Array.isArray() :
-         Check karta hai value array hai ya nahi.
-      
-      7. concat() :
-          2 arrays ko join karta hai.
+---
 
-          <!-- 
-          let a = [1,2];
-          let b = [3,4];
+# 33. Template Literals
 
-          let result = a.concat(b); -->
+### English
 
-      8. slice() :
-         array ka kuch part nikalne ke liye use hota hai.
-         Original array change nahi karta.
+Template literals use backticks and allow embedded expressions using `${}`.
 
-         <!-- array.slice(start, end) -->
+```js
+const name = "Viraj";
+const age = 22;
 
-      9. splice() :
-         Add/remove/change kar sakta hai.
-         Original array change karta hai.
+console.log(`My name is ${name} and I am ${age} years old.`);
+```
 
-      10. flat() :
-          Nested arrays ko simple banata hai.
+### Hindi
 
-          <!-- 
-          let arr = [1, [2,3], [4,5]];
-          console.log(arr.flat());
+Template literals string ke andar variables ya expressions easily use karne dete hain.
 
-          Output:
-          [1,2,3,4,5] -->
+---
 
-      11. some() :
-          Agar koi ek element condition satisfy kare.
+# 34. Scope
 
-          <!-- 
-          let nums = [1,2,3];
+### English
 
-          let result = nums.some(num => num > 2);
-          console.log(result);
+Scope determines where a variable can be accessed.
 
-          Output:
-          true -->
+Main types:
 
-      12. every() :
-         Sab elements condition satisfy kare.
+* Global Scope
+* Function Scope
+* Block Scope
 
-      13. reduce() :
-          Single value return karta hai.
+### Hindi
 
-          <!-- 
-          let nums = [1,2,3,4];
+Scope batata hai ki variable ko program ke kis part me access kiya ja sakta hai.
 
-          let total = nums.reduce((acc, curr) => {
-              return acc + curr;
-          }, 0);
+---
 
-          console.log(total); -->
+# 35. Hoisting
 
-      14. Array.from() :
-          kisi cheez ko array me convert karta hai.
+### English
 
-  
-  # synchronous :
-    Code line by line execute hota hai.
-    Ek kaam complete hone ke baad hi next kaam start hota hai.
+Hoisting is JavaScript's behavior where declarations are processed before the code in their scope is executed.
 
-    Synchronous code block karta hai.
-    Agar ek task slow ho to next wait karega.
+Example:
 
-    JavaScript normally synchronous hoti hai.
+```js
+console.log(a);
 
-  # Asynchronous :
-    JavaScript kisi task ka wait nahi karta.
-    Task background me chalta hai aur baaki code execute hota rehta hai.
-  
-  # Promise :
-    Promise ek object hai jo future me :
+var a = 10;
+```
 
-    value de sakta hai
-    error de sakta hai
+`var` declaration is hoisted, but its value is assigned later.
 
-    Promise asynchronous operations handle karne ke liye use hota hai.
+### Important
 
-    Promise States :
+`let` and `const` are also hoisted in a technical sense, but they cannot be accessed before their declaration because of the **Temporal Dead Zone (TDZ)**.
 
-    State	          Meaning
+### Hindi
 
-    Pending	        Kaam chal raha hai
-    Fulfilled	      Success
-    Rejected	        Error
+Hoisting me JavaScript declarations ko execution se pehle process karta hai.
 
-    <!-- let myPromise = new Promise((resolve, reject) => {
+---
 
-    let success = true;
+# 36. Closure
 
-    if(success) {
-        resolve("Task Complete");
-    } else {
-        reject("Task Failed");
-    }
-    }); 
+### English
 
-    console.log(myPromise);-->
+A closure occurs when a function remembers and can access variables from its outer lexical scope even after the outer function has finished executing.
 
-    <!-- resolve() -->
-    resolve("Task Complete");
-    Promise successful.
+```js
+function outer() {
+  let count = 0;
 
-    <!-- reject() -->
-    reject("Task Failed");
-    Promise failed.
+  return function () {
+    count++;
+    return count;
+  };
+}
 
-    <!-- 
-    let promise = new Promise((resolve, reject) => {
+const counter = outer();
 
-    resolve("Success");
+console.log(counter());
+console.log(counter());
+```
 
-    });
+Output:
 
-    promise
-        .then(result => {
-            console.log(result);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+```text
+1
+2
+```
 
-        Output
-        Success -->
+### Hindi
 
-       .then() :
-       Success handle karta hai ✅
+Closure me inner function apne outer function ke variables ko remember karta hai, even after outer function execute ho chuka ho.
 
-       .catch() :
-       Errors handle karta hai ❌
+---
 
-       finally() :
-       success ho ya error,
-       HAR CASE me chalta hai.
+# 37. Callback Function
 
-       <!-- 
-       fetch("https://jsonplaceholder.typicode.com/users")
-          .then((res) => res.json())
-          .then((data) => {
-              console.log("Success");
-          })
-          .catch((err) => {
-              console.log("Error");
-          })
-          .finally(() => {
-              console.log("Done");
-          }); -->
+### English
 
-  # Async / Await :
-    Promise handle karne ka modern easy way
-    async/await ka use asynchronous code ko easy aur readable banane ke liye hota hai.
+A callback is a function passed to another function to be called later.
 
-    Multiple .then() confusing ho sakte hain.
-    Isliye async/await use karte hai
+```js
+function greet(name, callback) {
+  console.log("Hello " + name);
+  callback();
+}
 
-    async Keyword :
-    Function ko asynchronous banata hai.
-    Async function automatically Promise return karta hai.
- 
-    await Keyword :
-    Promise complete hone tak wait karta hai.
+greet("Viraj", () => {
+  console.log("Welcome");
+});
+```
 
-    fetch() :
-    server/API se data lane ke liye use hota hai.
-    Ye Promise return karta hai.
+### Hindi
 
-    # Error Handling with try/catch 
+Jab ek function ko doosre function ke argument ke roop me pass karte hain aur baad me execute karte hain, use callback kehte hain.
 
-      <!-- 
-      async function getData() {
+---
 
-        try {
-            let response = await fetch("wrong-url");
-            let data = await response.json();
-            console.log(data);
-        }
-        catch(error) {
-            console.log("Error:", error);
-        }
-      }
-      getData(); -->
+# 38. Synchronous vs Asynchronous
 
-      Why try/catch ?
+### Synchronous
 
-      Agar error aaye : 
-      app crash nahi karega
-      error handle ho jayega
+### English
 
-      # Promise.all() :
-        Promise.all() multiple promises ko ek sath run karta hai.
+Synchronous code executes operations sequentially and waits for the current operation to complete before moving forward.
 
-        Sab promises successful hue to result deta hai
-        Ek bhi fail hua to pura reject ho jata hai
+### Hindi
 
+Synchronous code me ek operation complete hone ke baad next operation execute hota hai.
 
-  # Closure :
-    Jab ek function apne outer function ke variables ko yaad rakhta hai, even outer function execute hone ke baad bhi, use Closure kehte hai.
+### Asynchronous
 
-  
-  # localStorage :
-    localStorage browser ka storage system hai jisme data permanently save hota hai.
+### English
 
-    Page refresh ho
-    Browser close ho
-    PC restart ho
-    tab bhi data save rehta hai
+Asynchronous operations allow other JavaScript work to continue while waiting for an operation to complete.
 
-    localStorage kya store karta hai?
-    String data
+### Hindi
 
-    Agar object/array store karna ho to:
-    JSON.stringify()
-    JSON.parse()
-    use karna padta hai.
+Asynchronous operation ke wait ke time JavaScript other work continue kar sakti hai.
 
-    setItem() :  Data save
-    getItem() :  Data get
-    removeItem() :  One item delete
-    clear() :  Sab delete
+---
 
-  
-  # Event Delegation :
-    Event Delegation ek technique hai jisme:
+# 39. Promise
 
-    Parent element par event listener lagate hai
-    Child elements ke events handle karte hai
+### English
 
-    Ye possible hota hai because of:
-    Event Bubbling
+A Promise represents the eventual completion or failure of an asynchronous operation.
 
-    <!-- 
-    parent.addEventListener("click", function(event) {
+Promise has three common states:
 
-    if(event.target.tagName === "BUTTON") {
-      console.log(event.target.innerText);
-    }
+```text
+Pending
+Fulfilled
+Rejected
+```
 
-    }); -->
+Example:
+
+```js
+const promise = new Promise((resolve, reject) => {
+  resolve("Success");
+});
+```
+
+### Hindi
+
+Promise asynchronous operation ke future result ko represent karta hai.
+
+---
+
+# 40. async / await
+
+### English
+
+`async/await` provides a cleaner syntax for working with Promises.
+
+```js
+async function getData() {
+  const response = await fetch("https://example.com");
+  const data = await response.json();
+
+  console.log(data);
+}
+```
+
+### Hindi
+
+`async/await` Promise-based asynchronous code ko readable aur easy banata hai.
+
+---
+
+# 41. try...catch
+
+### English
+
+`try...catch` is used to handle errors.
+
+```js
+try {
+  // risky code
+} catch (error) {
+  console.log(error);
+}
+```
+
+### Hindi
+
+Runtime errors ko handle karne ke liye `try...catch` use hota hai.
+
+---
+
+# 42. DOM
+
+### English
+
+DOM stands for **Document Object Model**. It represents an HTML document as a tree of objects that JavaScript can read and manipulate in the browser.
+
+### Hindi
+
+DOM browser ke HTML document ka object-based representation hai.
+
+JavaScript se hum DOM ke through:
+
+* HTML change
+* CSS change
+* Elements create/remove
+* Events handle
+
+kar sakte hain.
+
+---
+
+# 43. Event
+
+### English
+
+An event is an action or occurrence detected by the browser, such as a click, input, submit, or key press.
+
+```js
+button.addEventListener("click", () => {
+  console.log("Button clicked");
+});
+```
+
+### Hindi
+
+Event user ya browser ki action hoti hai, jaise:
+
+* Click
+* Input
+* Submit
+* Key press
+
+---
+
+# 44. Event Listener
+
+### English
+
+`addEventListener()` attaches a function that runs when a specified event occurs.
+
+```js
+button.addEventListener("click", handleClick);
+```
+
+### Hindi
+
+`addEventListener()` kisi element par event ko listen karne ke liye use hota hai.
+
+---
+
+# 45. Local Storage
+
+### English
+
+`localStorage` allows a browser to store string data that persists across browser sessions.
+
+```js
+localStorage.setItem("name", "Viraj");
+
+const name = localStorage.getItem("name");
+```
+
+### Hindi
+
+`localStorage` browser me data store karta hai aur normally browser sessions ke across data persist karta hai.
+
+---
+
+# 46. JSON
+
+### English
+
+JSON stands for **JavaScript Object Notation**. It is a text format commonly used for exchanging structured data.
+
+### Object to JSON
+
+```js
+JSON.stringify(user);
+```
+
+### JSON to Object
+
+```js
+JSON.parse(data);
+```
+
+### Hindi
+
+JSON ek text-based data format hai jo APIs me data exchange ke liye commonly use hota hai.
+
+---
+
+# 47. `typeof`
+
+### English
+
+`typeof` is an operator used to determine the type of a value.
+
+```js
+typeof "Hello"; // "string"
+typeof 10;      // "number"
+typeof true;    // "boolean"
+```
+
+### Hindi
+
+`typeof` kisi value ka data type check karne ke liye use hota hai.
+
+---
+
+# 48. Optional Chaining `?.`
+
+### English
+
+Optional chaining allows us to safely access nested properties without throwing an error when an intermediate value is `null` or `undefined`.
+
+```js
+const city = user?.address?.city;
+```
+
+### Hindi
+
+`?.` ka use nested property safely access karne ke liye hota hai.
+
+---
+
+# 49. Nullish Coalescing `??`
+
+### English
+
+The nullish coalescing operator returns the right-hand value only when the left-hand value is `null` or `undefined`.
+
+```js
+const name = userName ?? "Guest";
+```
+
+### Hindi
+
+Agar left side ki value `null` ya `undefined` hai tab right side ki default value milegi.
+
+---
+
+# 50. Modules
+
+### English
+
+Modules allow JavaScript code to be divided into separate reusable files.
+
+### CommonJS
+
+```js
+module.exports = user;
+```
+
+```js
+const user = require("./user");
+```
+
+### ESM
+
+```js
+export default user;
+```
+
+```js
+import user from "./user.js";
+```
+
+### Hindi
+
+Modules code ko separate files me divide karke reusable aur maintainable banate hain.
+
+---
+
+# 51. `this` Keyword
+
+### English
+
+`this` refers to a context-dependent value determined by how a function is called.
+
+Example:
+
+```js
+const user = {
+  name: "Viraj",
+
+  greet() {
+    console.log(this.name);
+  }
+};
+
+user.greet();
+```
+
+### Hindi
+
+`this` ki value function ko kaise call kiya gaya hai, us context par depend karti hai.
+
+---
+
+# 52. Class
+
+### English
+
+A class is a syntax for creating objects and defining shared behavior.
+
+```js
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+
+  greet() {
+    console.log(`Hello ${this.name}`);
+  }
+}
+
+const user = new User("Viraj");
+
+user.greet();
+```
+
+### Hindi
+
+Class objects create karne aur unka common structure/behavior define karne ka syntax hai.
+
+---
+
+# 53. Constructor
+
+### English
+
+A constructor is a special method in a class that runs when a new object is created.
+
+```js
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+```
+
+### Hindi
+
+`constructor()` object create hote time automatically execute hota hai.
+
+---
+
+# 54. Error Handling
+
+### English
+
+JavaScript provides mechanisms such as `try...catch`, `throw`, and `finally` for handling errors.
+
+```js
+try {
+  throw new Error("Something went wrong");
+} catch (error) {
+  console.log(error.message);
+}
+```
+
+### Hindi
+
+Errors ko handle karne ke liye `try`, `catch`, `throw`, aur `finally` use kar sakte hain.
+
+---
+
+# 55. `NaN`
+
+### English
+
+`NaN` stands for **Not-a-Number**. It represents a value that is not a valid numeric result.
+
+```js
+console.log(Number("hello"));
+```
+
+Output:
+
+```text
+NaN
+```
+
+Check:
+
+```js
+Number.isNaN(value);
+```
+
+### Hindi
+
+`NaN` ka matlab **Not-a-Number** hai.
+
+---
+
+# 56. `Number.isInteger()`
+
+### English
+
+`Number.isInteger()` checks whether a value is an integer.
+
+```js
+Number.isInteger(10);   // true
+Number.isInteger(10.5); // false
+```
+
+### Hindi
+
+Ye check karta hai ki value integer hai ya nahi.
+
+---
+
+# 57. Truthy and Falsy
+
+### English
+
+In JavaScript, values are converted to boolean context as either truthy or falsy.
+
+Common falsy values:
+
+```text
+false
+0
+-0
+0n
+""
+null
+undefined
+NaN
+```
+
+Most other values are truthy.
+
+### Hindi
+
+Condition me kuch values `false` ki tarah behave karti hain, unhe falsy kehte hain.
+
+---
+
+# 58. `&&` and `||`
+
+### AND `&&`
+
+Both conditions need to be truthy.
+
+```js
+age >= 18 && isLoggedIn
+```
+
+### OR `||`
+
+At least one condition needs to be truthy.
+
+```js
+isAdmin || isOwner
+```
+
+### Hindi
+
+`&&` ka matlab **AND** aur `||` ka matlab **OR** hota hai.
+
+---
+
+# 59. Short-Circuiting
+
+### English
+
+Logical operators can stop evaluating as soon as the final result is known.
+
+Example:
+
+```js
+const name = user && user.name;
+```
+
+Modern JavaScript often uses:
+
+```js
+const name = user?.name;
+```
+
+### Hindi
+
+Logical operators condition ke result ke according unnecessary expression ko evaluate karna skip kar sakte hain.
+
+---
+
+# 60. Shallow Copy
+
+### English
+
+A shallow
