@@ -1354,4 +1354,227 @@ Logical operators condition ke result ke according unnecessary expression ko eva
 
 ### English
 
-A shallow
+A shallow copy copies the top-level properties, but nested objects can still reference the same objects.
+
+```js
+const user2 = { ...user1 };
+```
+
+### Hindi
+
+Shallow copy me top-level data copy hota hai, lekin nested objects same reference share kar sakte hain.
+
+---
+
+# 61. Deep Copy
+
+### English
+
+A deep copy creates an independent copy of nested data.
+
+One modern option for supported data is:
+
+```js
+const copy = structuredClone(original);
+```
+
+### Hindi
+
+Deep copy me nested data bhi independently copy hota hai.
+
+---
+
+# 62. Reference
+
+### English
+
+Objects and arrays are reference values. Assigning them to another variable normally copies the reference, not an independent object.
+
+```js
+const a = { name: "Viraj" };
+const b = a;
+
+b.name = "Alex";
+
+console.log(a.name);
+```
+
+Output:
+
+```text
+Alex
+```
+
+### Hindi
+
+Object ya array ko directly assign karne par generally same reference share hota hai.
+
+---
+
+# 63. Garbage Collection
+
+### English
+
+JavaScript engines automatically reclaim memory that is no longer reachable from the running program.
+
+### Hindi
+
+JavaScript engine automatically unused/unreachable memory ko clean karne ki process perform karta hai. Isse **garbage collection** kehte hain.
+
+---
+
+# 64. Event Loop
+
+### English
+
+The Event Loop helps JavaScript handle asynchronous operations while JavaScript code executes on a main thread.
+
+Simple flow:
+
+```text
+Call Stack
+    ↓
+Async Operation
+    ↓
+Runtime / APIs
+    ↓
+Queue
+    ↓
+Event Loop
+    ↓
+Call Stack
+```
+
+### Hindi
+
+Event Loop asynchronous operations ke callbacks ko appropriate time par JavaScript execution me process karne me help karta hai.
+
+---
+
+# 65. Call Stack
+
+### English
+
+The Call Stack is a LIFO data structure used to track currently executing function calls.
+
+### Hindi
+
+Call Stack currently executing functions ko track karta hai aur **LIFO (Last In, First Out)** principle follow karta hai.
+
+---
+
+# 66. JavaScript Engine
+
+### English
+
+A JavaScript engine parses, compiles, and executes JavaScript code.
+
+Examples:
+
+* V8 → Chrome and Node.js
+* SpiderMonkey → Firefox
+* JavaScriptCore → Safari
+
+### Hindi
+
+JavaScript engine JavaScript code ko process aur execute karta hai.
+
+---
+
+# 67. Important Interview Questions
+
+### What is JavaScript?
+
+> JavaScript is a high-level, dynamically typed programming language used to build interactive and dynamic applications.
+
+### Difference between `var`, `let`, and `const`?
+
+> `var` is function-scoped, while `let` and `const` are block-scoped. `let` can be reassigned, whereas `const` cannot be reassigned.
+
+### Difference between `==` and `===`?
+
+> `==` performs loose equality comparison with possible type conversion, while `===` performs strict equality comparison of both value and type.
+
+### What is a closure?
+
+> A closure is a function that retains access to variables from its outer lexical scope even after the outer function has finished executing.
+
+### What is a callback?
+
+> A callback is a function passed to another function to be called later.
+
+### What is a Promise?
+
+> A Promise represents the eventual completion or failure of an asynchronous operation.
+
+### What is async/await?
+
+> `async/await` is syntax built on Promises that makes asynchronous code easier to read and write.
+
+### What is the DOM?
+
+> DOM stands for Document Object Model and represents an HTML document as objects that JavaScript can manipulate.
+
+### What is hoisting?
+
+> Hoisting is JavaScript's behavior of processing declarations before executing code in their scope.
+
+### What is an array?
+
+> An array is an ordered collection of values.
+
+### What is an object?
+
+> An object is a collection of key-value pairs.
+
+### What is a closure?
+
+> A closure is created when a function retains access to variables from its outer lexical scope.
+
+---
+
+# Quick Revision Table
+
+| Topic                                                | Short Answer                                                  |
+| ---------------------------------------------------- | ------------------------------------------------------------- |
+| JavaScript                                           | Programming language for dynamic and interactive applications |
+| Variable                                             | Stores a value                                                |
+| `let`                                                | Block-scoped, can be reassigned                               |
+| `const`                                              | Block-scoped, cannot be reassigned                            |
+| Object                                               | Key-value collection                                          |
+| Array                                                | Ordered collection                                            |
+| Function                                             | Reusable block of code                                        |
+| `map()`                                              | Transforms array into a new array                             |
+| `filter()`                                           | Selects matching elements                                     |
+| `find()`                                             | Returns first matching element                                |
+| `forEach()`                                          | Executes callback for each element                            |
+| `reduce()`                                           | Produces an accumulated result                                |
+| Closure                                              | Function retains outer-scope access                           |
+| Callback                                             | Function passed to another function                           |
+| Promise                                              | Represents an async result                                    |
+| `async/await`                                        | Cleaner Promise syntax                                        |
+| DOM                                                  | Object representation of HTML document                        |
+| Event                                                | Browser/user action                                           |
+| JSON                                                 | Text format for structured data                               |
+| Hoisting                                             | Declaration processing before execution                       |
+| Event Loop                                           | Coordinates asynchronous callbacks                            |
+| Call Stack                                           | Tracks function execution                                     |
+| `?.`                                                 | Safe property access                                          |
+| `??`                                                 | Default for null/undefined                                    |
+| `===`                                                | Strict equality                                               |
+| `NaN`                                                | Not-a-Number                                                  |
+| `typeof`                                             | Checks value type                                             |
+| """                                                  |                                                               |
+| out = Path("/mnt/data/javascript-revision-notes.md") |                                                               |
+| out.write_text(md, encoding="utf-8")                 |                                                               |
+| print(f"Created: {out}")                             |                                                               |
+| print(f"Lines: {len(md.splitlines())}")              |                                                               |
+| print(f"Size: {out.stat().st_size} bytes")           |                                                               |
+| if False else None                                   |                                                               |
+
+```
+" 
+```
+
+"
+)"]}
