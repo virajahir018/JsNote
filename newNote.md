@@ -1,47 +1,39 @@
-# Split() ?
-- Ek string ko kisi particular character/word ke basis par todkar array banana
-  - const name = "Viraj Ahir";
-  - console.log(name.split(" "));
-  
-Output :
-- ["Viraj", "Ahir"]
-- ka matlab hai space ke jagah se string ko tod do.
 
-# Optional Chaining ?. ?
-- Kisi property ke na hone par error se bachata hai.
+1. Introduction & Hook (30-45 Seconds)
 
-- const age = 20;
-- const result = age >= 18 ? "Adult" : "Minor";
-- console.log(result);
-- 
-- condition ? true wala : false wala
+"Sir, JavaScript mein variables ko hum data store karne ke containers ki tarah dekhte hain. Agar hum ES5 yaani puraane JavaScript ki baat karein, to hamare paas variables declare karne ka sirf ek tareeqa tha—var keyword.
+Lekin 2015 mein jab ES6 (ECMAScript 2015) introduce hua, to JavaScript ke scope aur memory management ko behtar banane ke liye do naye keywords laye gaye—let aur const. Aaj ke time par modern JavaScript development mein in teeno ka sahi use karna code ki efficiency aur bug-free execution ke liye bohot zaroori hai."
 
-# .sort({ createdAt: -1 }) ?
-- Latest order sabse upar dikhayega.
+2. Core Comparison: The Three Pillars (2 Minutes)
 
-- -1 = descending order
--  1 = ascending order
--  
+"In teeno keywords ke beech ke differences ko hum mainly teen parameters par samajh sakte hain: Scope, Redeclaration & Re-assignment, aur Hoisting."
 
-if (!getData.ok) {
+Pillar 1: Scope (Kahan tak access kar sakte hain?)
 
-ka simple meaning hai:
+• "var Function-scoped hota hai. Iska matlab agar humne var ko kisi function ke andar declare kiya hai, to wo sirf us function mein chalega. Lekin agar use kisi if block ya loop ke andar declare kiya, to wo block ke bahar bhi access ho jata hai.
+• Wahi dusri taraf, let aur const Block-scoped hote hain. Agar inhein kisi bhi curly braces {} (jaise loop ya if-else) ke andar likha jaye, to ye uske bahar access nahi kiye ja sakte. Yeh memory leak aur accidental variable override ko rokta hai."
 
-"Agar API request successful nahi hui, to ye code chalao."
+Pillar 2: Redeclaration & Re-assignment (Kya hum badal sakte hain?)
 
-Interview mein short answer:
+• "var bohot zyada flexible hai—ise aap ek hi scope mein re-declare bhi kar sakte hain aur value re-assign bhi kar sakte hain. Is wajah se purani scripts mein bade bugs aate the.
+• let mein aap value to badal (re-assign) sakte hain, lekin use dobara re-declare nahi kar sakte.
+• const ka matlab hai Constant. Ismein na to aap re-declare kar sakte hain aur na hi value ko re-assign kar sakte hain. Isko declare karte waqt hi value dena compulsory hota hai."
 
-response.ok batata hai ki fetch request successful hui hai ya nahi. true means HTTP status 200–299, aur false means error status.
+Pillar 3: Hoisting (Execution se pehle kya hota hai?)
 
- <h1>{product?.title}</h1>
-
- ?. isliye lagaya hai kyunki API response aane se pehle product null hai.
-
-Ab ye implement karo. Agar product ka title screen par aa gaya → done bolo.
+• "JavaScript mein hoisting ke dauran teeno keywords top par chale jaate hain, lekin unka behavior alag hota hai.
+• var variables hoisted hote hain aur undefined se initialize ho jaate hain. Isliye agar aap declare karne se pehle unhein use karein, to error nahi aata, sirf undefined milta hai.
+• let aur const bhi hoist hote hain, lekin wo initialize nahi hote. Wo ek Temporal Dead Zone (TDZ) mein chale jaate hain. Agar aap inhein declaration se pehle access karne ki koshish karenge, to JavaScript aapko ek ReferenceError dega, jo ki safe coding ke liye bohot achha hai."
 
 
+Real-world Examples & Use Cases (1 Minute)
 
+"Agar hum inke practical application ki baat karein, to real-world development mein hamari basic approach badal chuki hai:
+• const ka use: Hum un values ke liye karte hain jo kabhi change nahi honi chahiye, jaise kisi API ka base URL (const API_URL = 'https://example.com'), ya configuration settings, ya functions aur arrays ke references.
+• let ka use: Hum tab karte hain jab humein pata ho ki variable ki value aage chalkar badlegi, jaise kisi for loop ka counter variable (let i = 0) ya fir kisi shopping cart ka total price jo product add hone par change hoga.
+• var ka use: Aaj ke modern standard mein var ka use completely avoid kiya jata hai kyunki block scope na hone ki wajah se ye global window object ko pollute kar deta hai aur unexpected bugs create karta hai."
 
+4. Special Edge Case: Objects and Arrays with Const (30 Seconds)
 
-
-L2: Secure Authentication & Subscription-Based Content Access with Token BlacklistingObjective:Build a secure authentication system with role-based access control (RBAC), subscription management, token blacklisting, and business logic around content access based on subscription plans.Problem StatementYou need to implement:1. User Authentication (Signup, Login, Logout, Token Management)Signup/Login: Users register with username, email, and password.Password hashing: Store securely.JWT Tokens: Generate access & refresh tokens on login.Token Blacklisting:Logout should invalidate the access & refresh tokens by blacklisting them.Blacklisted tokens should not be usable anymore.Role-Based Access:Users can manage their subscriptions & access content.Admins can create, update, or delete content & manage subscriptions.2. Subscription-Based Content Access (CRUD with Business Logic)Users can subscribe to a plan (free, premium, pro) to access content.Content is categorized into "Free" & "Premium".Access Rules Based on Subscription:Free users can only view free content.Premium users can access both free & premium content.Pro users get additional discounts on purchases (business logic).Dynamic Expiry: Subscriptions should expire 30 days after purchase.Auto-Downgrade:If a subscription expires, the user is automatically moved to "free" access.3. Token Expiry, Refresh, and BlacklistingAccess Token Expiry: 15 minutesRefresh Token Expiry: 7 days (optional)Token Blacklisting on Logout: (optional)Add access & refresh tokens to a blacklist DB.Blacklisted tokens should be checked on every request.Renewal Logic:Users can renew their subscription before expiry.If expired, they must buy a new subscription.API RequirementsAuthentication Routes:POST /signup → Register a user (password hashed)POST /login → Authenticate user & generate JWT tokensPOST /logout → Blacklist tokens & logout userPOST /refresh → Issue a new access token, reject if blacklistedSubscription Routes (Protected, Role-Based)POST /subscribe → Users buy a subscriptionGET /subscription-status → Check subscription validityPATCH /renew → Users can renew before expiryPOST /cancel-subscription → Users can cancel manuallyContent Routes (RBAC Protected)GET /content/free → All users can view free contentGET /content/premium → Only Premium/Pro users can accessPOST /content → Only admins can create new contentDELETE /content/:id → Only admins can delete contentExpected OutcomesSecure authentication with signup, login, logout, and token blacklistingSubscription-based access control with automatic expiry & renewalJWT token management (refresh, expiry, and blacklisting on logout)Admins can manage content, users can subscribe & access it based on plansProper role-based access control (RBAC) & API security measuresSubmission GuidelinesImplement secure authentication, RBAC, token management, and subscription business logicEnsure JWT token expiry, refresh, and blacklistingSubscription expiry should be auto-handledPush your code to the Masai repository for submission
+"Yahan par ek bohot interesting point aur interview ka favourite question aata hai—const ke sath Objects aur Arrays ka behavior.
+Jab hum const se koi array ya object banate hain, to uska reference block ho jata hai, yaani hum use naya object re-assign nahi kar sakte. Lekin, hum us object ke andar ke properties ko ya array ke elements ko mutate (change/modify) kar sakte hain. Jaise const user = { name: 'Amit' }; mein hum user.name = 'Rahul'; bilkul kar sakte hain."
