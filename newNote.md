@@ -76,3 +76,82 @@ Imagine kariye ek scenario: Humne ek function likha aur uske andar ek `if` block
 Lekin agar hum usi `if` block ke andar `let` ya `const` use karenge, to wo block se bahar leak nahi hoga.
 
 **Real-world disaster:** Puraane JavaScript mein jab hum `for (var i = 0; i < 5; i++)` likhte the, to loop khatam hone ke baad bhi `i` ki value loop ke bahar access ho jati thi, jo ki global memory ko pollute karti thi aur asynchronous code (jaise `setTimeout`) mein bade bugs create karti thi. Modern JS mein `let` use karne se yeh problem solve ho gayi hai."
+
+# Variable Shadowing in JavaScript
+
+## 1. Explain the Concept of Variable Shadowing with Examples
+
+### Reason kya hai?
+
+"Chunki `var` block scope ko nahi manta, isliye wo is block se leak hokar pure outer scope mein same variable point ko re-declare karne ki koshish karta hai. Lekin outer scope mein pehle se hi `let point` maujood hai, aur `let` strict re-declaration allow nahi karta. Is wajah se yeh illegal shadowing ho jati hai.
+
+**Note:** Iska bilkul ulta allowed hai—yaani aap ek outer `var` variable ko inner `let` se bilkul shadow kar sakte hain, wo legally perfectly valid hai."
+
+## 2. Matrix Summary for Quick Reference
+
+Interviewer ke saamne clarity banaye rakhne ke liye:
+
+| Outer Variable Type | Inner Variable Type | Status  | Result                                     |
+| ------------------- | ------------------- | ------- | ------------------------------------------ |
+| `let` / `const`     | `let` / `const`     | Legal   | Clean Shadowing works.                     |
+| `var`               | `let` / `const`     | Legal   | Inner variable shadows outer `var`.        |
+| `let` / `const`     | `var`               | Illegal | ❌ SyntaxError (Variable Leaking conflict). |
+
+---
+
+# What Is the Temporal Dead Zone (TDZ) and Which Variable Declarations Are Affected by It?
+
+## 1. Example
+
+```javascript
+// ---- SCOPE STARTS HERE ----
+// 1. Yeh 'age' variable ka Temporal Dead Zone (TDZ) hai.
+
+console.log(name); // Output: undefined (Kyunki var par TDZ nahi lagta)
+console.log(age);  // ❌ Throws: ReferenceError: Cannot access 'age' before initialization
+
+// 2. TDZ ENDS HERE FOR 'age'
+let age = 25;
+
+console.log(age);  // Output: 25 (TDZ se bahar aa chuka hai)
+```
+
+> Use code with caution.
+
+"Is example mein dikhta hai ki chunki `let age` line number 7 par declare hua hai, to scope ke start se lekar line 7 tak ka jo area tha, wo `age` ke liye dead zone tha. Isliye line 5 par strict error aaya."
+
+## 2. An Interesting Interview Trick: Why the Word "Temporal"?
+
+"Interviewers kabhi-kabhi fasaane ke liye puchte hain ki iska naam 'Temporal' (Time-based) kyun hai, 'Spatial' (Space-based) kyun nahi?
+
+Iska jawab yeh hai ki TDZ variable ke position (line number) par nahi, balki execution ke time par depend karta hai. Agar ek function variable declaration ke upar likha hai par wo call declaration ke baad hota hai, to error nahi aayega kyunki call hote waqt tak variable ka TDZ time khatam ho chuka hota hai."
+
+## 3. Summary Matrix
+
+Aap is structure ko dimaag mein rakh sakte hain:
+
+| Declaration Type | Hoisted? | Initial Value in Memory | Affected by TDZ? | Error Type if Accessed Early   |
+| ---------------- | -------- | ----------------------- | ---------------- | ------------------------------ |
+| `var`            | Yes      | `undefined`             | ❌ No             | No Error (Returns `undefined`) |
+| `let`            | Yes      | Uninitialized           | Yes              | `ReferenceError`               |
+| `const`          | Yes      | Uninitialized           | Yes              | `ReferenceError`               |
+| `class`          | Yes      | Uninitialized           | Yes              | `ReferenceError`               |
+
+---
+
+## 4. Why Did JavaScript Introduce TDZ? / Conclusion (30 Seconds)
+
+"To conclude, TDZ ko introduce karne ka main reason tha Code Predictability aur Runtime Safety.
+
+Puraane JavaScript mein variables ko declare karne se pehle use karna ek kharab practice thi, par `var` use allow kar deta tha jisse bohot se silent bugs aate the. TDZ hamen majboor karta hai ki hum pehle variables ko properly declare karein aur phir use karein. Yeh development ke waqt hi bugs ko catch karne mein bohot madad karta hai."
+
+---
+
+# What Happens When You Try to Access a Variable Before It's Declared Using Different Declaration Methods?
+
+| Declaration Method        | Hoisted? | Memory Initialization | Early Access Outcome | Error Type (If Any) |
+| ------------------------- | -------- | --------------------- | -------------------- | ------------------- |
+| `var` variable            | Yes      | `undefined`           | Returns `undefined`  | No Error            |
+| `let` / `const` variable  | Yes      | Uninitialized (TDZ)   | Code Crashes         | ❌ `ReferenceError`  |
+| Function Declaration      | Yes      | Actual Function Body  | Works Perfectly      | No Error            |
+| `var` Function Expression | Yes      | `undefined`           | Code Crashes         | ❌ `TypeError`       |
