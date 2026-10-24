@@ -76,31 +76,3 @@ Imagine kariye ek scenario: Humne ek function likha aur uske andar ek `if` block
 Lekin agar hum usi `if` block ke andar `let` ya `const` use karenge, to wo block se bahar leak nahi hoga.
 
 **Real-world disaster:** Puraane JavaScript mein jab hum `for (var i = 0; i < 5; i++)` likhte the, to loop khatam hone ke baad bhi `i` ki value loop ke bahar access ho jati thi, jo ki global memory ko pollute karti thi aur asynchronous code (jaise `setTimeout`) mein bade bugs create karti thi. Modern JS mein `let` use karne se yeh problem solve ho gayi hai."
-
-# Explain the Concept of Variable Shadowing with Examples
-
-```javascript
-let point = 10;
-
-if (true) {
-    var point = 20; // Throws: SyntaxError: Identifier 'point' has already been declared
-}
-```
-
-> Use code with caution.
-
-## Reason kya hai?
-
-"Chunki `var` block scope ko nahi manta, isliye wo is block se leak hokar pure outer scope mein same variable `point` ko re-declare karne ki koshish karta hai. Lekin outer scope mein pehle se hi `let point` maujood hai, aur `let` strict re-declaration allow nahi karta. Is wajah se yeh illegal shadowing ho jati hai.
-
-**Note:** Iska bilkul ulta allowed hai—yaani aap ek outer `var` variable ko inner `let` se bilkul shadow kar sakte hain, wo legally perfectly valid hai."
-
-## Matrix Summary for Quick Reference
-
-Interviewer ke saamne clarity banaye rakhne ke liye:
-
-| Outer Variable Type | Inner Variable Type | Status  | Result                                     |
-| ------------------- | ------------------- | ------- | ------------------------------------------ |
-| `let` / `const`     | `let` / `const`     | Legal   | Clean Shadowing works.                     |
-| `var`               | `let` / `const`     | Legal   | Inner variable shadows outer `var`.        |
-| `let` / `const`     | `var`               | Illegal | ❌ SyntaxError (Variable Leaking conflict). |
