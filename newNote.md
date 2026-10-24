@@ -138,3 +138,73 @@ Outer Variable Type	Inner Variable Type	Status	Result
 let / const	let / const	Legal	Clean Shadowing works.
 var	let / const	Legal	Inner variable shadows outer var.
 let / const	var	Illegal	❌ SyntaxError (Variable Leaking conflict).
+
+# What is the Temporal Dead Zone (TDZ) and which variable declarations are affected by it?
+
+"Is example mein dikhta hai ki chunki let age line number 7 par declare hua hai, to scope ke start se lekar line 7 tak ka jo area tha, wo age ke liye dead zone tha. Isliye line 5 par strict error aaya."
+
+An Interesting Interview Trick: Why the word "Temporal"?
+
+"Interviewers kabhi-kabhi fasaane ke liye puchte hain ki iska naam 'Temporal' (Time-based) kyun hai, 'Spatial' (Space-based) kyun nahi?
+Iska jawab yeh hai ki TDZ variable ke position (line number) par nahi, balki execution ke time par depend karta hai. Agar ek function variable declaration ke upar likha hai par wo call declaration ke baad hota hai, to error nahi aayega kyunki call hote waqt tak variable ka TDZ time khatam ho chuka hota hai."
+
+Summary Matrix
+
+Aap is structure ko dimaag mein rakh sakte hain:
+
+Declaration Type	Hoisted?	Initial Value in Memory	Affected by TDZ?	Error Type if Accessed Early
+var	Yes	undefined	❌ No	No Error (Returns undefined)
+let	Yes	Uninitialized	Yes	ReferenceError
+const	Yes	Uninitialized	Yes	ReferenceError
+class	Yes	Uninitialized	Yes	ReferenceError
+
+
+5. Why did JavaScript introduce TDZ? / Conclusion (30 Seconds)
+
+"To conclude, TDZ ko introduce karne ka main reason tha Code Predictability aur Runtime Safety.
+Puraane JavaScript mein variables ko declare karne se pehle use karna ek kharab practice thi, par var use allow kar deta tha jisse bohot se silent bugs aate the. TDZ hamen majboor karta hai ki hum pehle variables ko properly declare karein aur phir use karein. Yeh development ke waqt hi bugs ko catch karne mein bohot madad karta hai
+
+# What happens when you try to access a variable before it's declared using different declaration methods?
+
+
+
+1. Introduction & The Core Concept (45 Seconds)
+
+"Sir, jab bhi hum kisi variable ko declare karne se pehle access karne ki koshish karte hain, to JavaScript engine ka behavior is baat par depend karta hai ki wo variable kaise declare kiya gaya hai (var, let, ya const).
+Iske piche ka main reason hai Hoisting. Jab JavaScript execution context banta hai, to Creation Phase ke dauran engine poore code ko scan karke sabhi variables aur functions ko memory allocate kar deta hai. Lekin farq is baat se padta hai ki memory allocate karte waqt un variables ko initialize kaise kiya gaya hai. Isi wajah se kuch variables silently undefined de dete hain, jabki kuch pure code ko crash kar dete hain."
+
+2. Deep Dive: Scenario-by-Scenario Behavior (2 Minutes)
+
+
+Scenario 1: Variables declared with var (The Loose Way)
+
+• Behavior: Yeh bina kisi error ke undefined return karta hai.
+• Why it happens: Jab var variables hoist hote hain, to JavaScript engine memory allocation ke sath-sath unhe automatic ek default value de deta hai, jo hoti hai undefined.
+• Interview Insight: Halanki isse code crash nahi hota, par purani scripts mein yeh silent bugs ka sabse bada kaaran tha, kyunki variable bina kisi error ke galat data ke sath execute ho jata tha.
+
+Scenario 2: Variables declared with let and const (The Strict Way)
+
+• Behavior: Yeh instantly code ko crash kar deta hai aur ReferenceError: Cannot access 'variable' before initialization throw karta hai.
+• Why it happens: let aur const bhi hoist hote hain aur unhe memory bhi milti hai, lekin wo uninitialized state mein rehte hain. Jab tak engine actual declaration line tak nahi pahonchta, yeh variables ek blind spot mein rehte hain jise hum Temporal Dead Zone (TDZ) kehte hain. Is zone mein inhein access karna strictly forbidden hai.
+
+Scenario 3: Traditional Function Declarations (The Exception)
+
+• Behavior: Yeh perfectly fine kaam karta hai, koi error nahi aata.
+• Why it happens: Jo normal function declarations hote hain (jaise function greet() {}), unka pure ka pura body structure creation phase mein hi memory mein load ho jata hai (jise Full Hoisting kehte hain). Isliye aap unhe line 1 par call kar sakte hain, chahe wo line 100 par define kiye gaye hon.
+
+Scenario 4: Function Expressions (The Sneaky Trap)
+
+• Behavior: Agar function ko var se banaya hai to TypeError aayega, aur let/const se banaya hai to ReferenceError.
+• Why it happens: Agar aapne likha var sayHi = function() {} aur use upar call kiya, to sayHi variable ki tarah hoist hokar undefined ban chuka hai. Jab aap undefined ko ek function ki tarah call karne ki koshish karenge (sayHi()), to engine kahega TypeError: sayHi is not a function.
+
+Comparison Matrix
+
+Interviewer ke saamne is pure behavior ko visually summarize karne ke liye:
+
+Declaration Method	Hoisted?	Memory Initialization	Early Access Outcome	Error Type (If Any)
+var variable	Yes	undefined	Returns undefined	No Error
+let / const variable	Yes	Uninitialized (TDZ)	Code Crashes	❌ ReferenceError
+Function Declaration	Yes	Actual Function Body	Works Perfectly	No Error
+var Function Expression	Yes	undefined	Code Crashes
+
+  
