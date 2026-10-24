@@ -76,3 +76,65 @@ Imagine kariye ek scenario: Humne ek function likha aur uske andar ek `if` block
 Lekin agar hum usi `if` block ke andar `let` ya `const` use karenge, to wo block se bahar leak nahi hoga.
 
 **Real-world disaster:** Puraane JavaScript mein jab hum `for (var i = 0; i < 5; i++)` likhte the, to loop khatam hone ke baad bhi `i` ki value loop ke bahar access ho jati thi, jo ki global memory ko pollute karti thi aur asynchronous code (jaise `setTimeout`) mein bade bugs create karti thi. Modern JS mein `let` use karne se yeh problem solve ho gayi hai."
+
+# Explain the concept of variable shadowing with examples.
+
+
+1. Introduction & Core Definition (45 Seconds)
+
+"Sir, Variable Shadowing tab hoti hai jab ek specific scope (jaise ek inner block ya function) ke andar ek variable declare kiya jata hai jiska naam exact wahi hota hai jo uske outer scope (jaise global ya parent scope) ke variable ka hai.
+Aise scenario mein, jo inner variable hota hai, wo temporary taur par outer variable ko 'shadow' (yaani chhipa) deta hai. Is wajah se, us inner scope ke andar jab bhi hum us variable name ko access karte hain, to JavaScript engine hamesha inner wale variable ki value return karta hai, na ki outer wale ki. Outer variable delete nahi hota, wo bas us inner scope ke liye unreachable ho jata hai."
+
+2. How it Works: The Mechanism (1.5 Minutes)
+
+"Isko behtar tareeqe se samajhne ke liye humein JavaScript ke Scope Chain mechanism ko samajhna hoga.
+Jab bhi JavaScript engine kisi variable ko dhoondhta hai, wo sabse pehle current local scope mein check karta hai. Agar variable wahan mil jata hai, to wo aage outer scope mein check karne nahi jata. Variable shadowing isi rule par kaam karti hai. Chunki inner scope mein humne naya variable bana diya, engine outer variable tak pahonch hi nahi pata."
+
+Shadowing Types Aur Keywords Ka Behavior:
+
+• Block Scope Shadowing (let and const): let aur const ke sath shadowing bohot clean aur predictable hoti hai. Agar ek outer let x hai aur humne if block ke andar fir se let x likh diya, to inner x, outer x ko shadow kar dega. Block se bahar aate hi, outer x fir se normal visible ho jata hai.
+• Function Scope Shadowing (var): Agar ek var variable global scope mein hai, aur humne function ke andar ek aur var declare kar diya same naam se, to function ke andar global variable shadow ho jayega.
+
+3. Concrete Code Examples for Explanation (1 Minute)
+
+"Sir, main iske do examples dena chahunga—ek valid standard shadowing aur ek illegal shadowing jo interview ka favourite trap hai."
+
+Example 1: Valid Shadowing (Using let)
+
+javascript
+let target = "Global Value";
+
+if (true) {
+    let target = "Inner Block Value"; // Yahan Shadowing ho rahi hai
+    console.log(target); // Output: "Inner Block Value"
+}
+
+console.log(target); // Output: "Global Value" (Block ke bahar outer variable bilkul safe hai)
+Use code with caution.
+"Is example mein, inner target ne outer target ko block ke andar overwrite nahi kiya, bas chhipa diya. Block khatam hote hi outer variable wapas access ho gaya."
+
+4. The Interview Trap: "Illegal Shadowing" (1 Minute)
+
+"Yahan par ek sabse bada twist aata hai jise hum Illegal Shadowing kehte hain. Interviewer aksar code dekar yahan phasate hain.
+Hum ek block-scoped variable (let ya const) ko var ka use karke shadow nahi kar sakte. Agar hum aisa karne ki koshish karenge, to JavaScript immediate SyntaxError throw karegi."
+Aap unhe yeh illegal example explain kar sakte hain:
+javascript
+let point = 10;
+
+if (true) {
+    var point = 20; // Throws: SyntaxError: Identifier 'point' has already been declared
+}
+Use code with caution.
+Reason kya hai?
+"Chunki var block scope ko nahi manta, isliye wo is block se leak hokar pure outer scope mein same variable point ko re-declare karne ki koshish karta hai. Lekin outer scope mein pehle se hi let point maujood hai, aur let strict re-declaration allow nahi karta. Is wajah se yeh illegal shadowing ho jati hai.
+Note: Iska bilkul ulta allowed hai—yaani aap ek outer var variable ko inner let se bilkul shadow kar sakte hain, wo legally perfectly valid hai."
+
+
+Matrix Summary for Quick Reference
+
+Interviewer ke saamne clarity banaye rakhne ke liye:
+
+Outer Variable Type	Inner Variable Type	Status	Result
+let / const	let / const	Legal	Clean Shadowing works.
+var	let / const	Legal	Inner variable shadows outer var.
+let / const	var	Illegal	❌ SyntaxError (Variable Leaking conflict).
