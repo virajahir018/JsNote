@@ -207,4 +207,31 @@ let / const variable	Yes	Uninitialized (TDZ)	Code Crashes	❌ ReferenceError
 Function Declaration	Yes	Actual Function Body	Works Perfectly	No Error
 var Function Expression	Yes	undefined	Code Crashes
 
+
+# Explain the difference between global scope, function scope, and block scope
+
+boundary conflict clear karna chahunga:"
+javascript
+let globalVar = "I am Global"; // Global Scope
+
+function scopeDemo() {
+    var functionVar = "I am Function Scoped"; // Function Scope
+    
+    if (true) {
+        var leakedVar = "I am leaked out of block"; 
+        let blockVar = "I am trapped inside block"; // Block Scope
+    }
+    
+    console.log(leakedVar);   // Output: "I am leaked..." (Kyunki var block nahi manta)
+    // console.log(blockVar);  // ❌ ReferenceError! (let block ke bahar nahi aa sakta)
+}
+
+scopeDemo();
+// console.log(functionVar); // ❌ ReferenceError! (Function scope variable functions se bahar protected hai)
+Use code with caution.
+
+4. Conclusion & Production Best Practice (30 Seconds)
+
+"To wrap it up, modern production pipelines (jaise React, Angular, ya Node) mein variables ke unintentional leaks aur global scope pollution ko rokne ke liye Block Scope (let aur const) ko default practice banaya gaya hai.
+Hamein global scope ka use minimize karna chahiye kyunki global variables collision create kar sakte hain aur memory ko optimize nahi hone dete. Hamesha code ko tightest closure ya smallest scope mein wrap karna hi ek acche developer ki pehchan hoti hai."
   
